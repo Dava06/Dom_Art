@@ -1,0 +1,604 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ДомАрт</title>
+    <link rel="icon" href="images/convertio.in_i.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css"> <!-- Подключение CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Верхний хедер с кнопками -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/main.svg" alt="Логотип ДомАрт" width="100" height="50">
+            </div>
+            <div class="auth-buttons">
+                <button class="auth-btn" onclick="openLoginModal()">Войти</button>
+                <button class="auth-btn" onclick="openRegisterModal()">Регистрация</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Приветственная страница -->
+    <section class="welcome-screen">
+        <div class="welcome-content">
+            <img src="images/dom1.jpg" alt="Логотип ДомАрт" class="logo-img" width="500" height="200">
+            <h1>Ваша мечта может стать реальностью</h1>
+            <p>Покупайте ваш уголок в компании ДомАрт</p>
+            <div class="btn-wrapper top-btn">
+                <a href="javascript:void(0);" class="scroll-down-btn" onclick="checkLoginAndRedirect('second.html')">Упростить сайт</a>
+            </div>
+            <div class="btn-wrapper bottom-btn">
+                <button class="scroll-down-btn" onclick="scrollToCatalog(2000)">Посмотреть предложения ↓</button>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Основной каталог -->
+    <main id="catalog-section">
+        <h2>Наши предложения по цене</h2>
+        <div class="price-filters-container">
+            <div class="filter-card" data-price="6000000" onclick="toggleDescription(6000000, 'Ростов-на-Дону, ул. Пушкина 10', '5 800 000 ₽', '7 соток', ['images/6.webp'], this)">
+                <h3>До 6 млн ₽</h3>
+            </div>
+            <div class="filter-card" data-price="8000000" onclick="toggleDescription(8000000, 'Аксай, пер. Цветочный 5', '7 900 000 ₽', '5 соток', ['images/8.webp'], this)">
+                <h3>До 8 млн ₽</h3>
+            </div>
+            <div class="filter-card" data-price="10000000" onclick="toggleDescription(10000000, 'Батайск, мкр. Северный', '9 500 000 ₽', '10 соток', ['images/10.jpg'], this)">
+                <h3>До 10 млн ₽</h3>
+            </div>
+            <div class="filter-card" data-price="12000000" onclick="toggleDescription(12000000, 'Ростов-на-Дону, Западный', '11 200 000 ₽', '6 соток', ['images/12.webp'], this)">
+                <h3>До 12 млн ₽</h3>
+            </div>
+        </div>
+
+        <!-- Мини-описание -->
+        <div class="description-box" id="descriptionBox">
+            <div class="description-images" id="descImages"></div>
+            <p id="descLocation">Местоположение: </p>
+            <p id="descPrice">Точная цена: </p>
+            <p id="descArea">Площадь: </p>
+            <button class="promo-link-btn" onclick="scrollToSection('services-section')">Смотреть наши услуги поддержки →</button>
+        </div>
+    </main>
+
+
+
+    <section class="promotions-section" id="services-section">
+        <h2>Услуги поддержки</h2>
+        <div class="services-row">
+        </div>
+        <div class="services-cards">
+            <div class="card" data-action="more">
+                <span class="icon icon-land">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7V22H22V7L12 2Z" stroke="#4CAF50" stroke-width="2" />
+                    </svg>
+                </span>
+                <h3>Подбор земельного участка</h3>
+                <p>Проверим участок на юридическую чистоту и соответствие градостроительным регламентам.</p>
+                <button class="btn" data-action="more">Узнать больше</button>
+            </div>
+            <div class="card" data-action="consult">
+                <span class="icon icon-mortgage">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 7V5C3 3.9 3.9 3 5 3H19C20.1 3 21 3.9 21 5V7M3 7V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V7M3 7H21" stroke="#2196F3" stroke-width="2" />
+                    </svg>
+                </span>
+                <h3>Оформление ипотеки</h3>
+                <p>Расскажем о действующих ипотечных программах и предложениях банков.</p>
+                <button class="btn" data-action="consult">Получить консультацию</button>
+            </div>
+            <div class="card" data-action="apply">
+                <span class="icon icon-house">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 9V4C19 2.9 18.1 2 17 2H7C5.9 2 5 2.9 5 4V9M19 9L21 11V21C21 21.55 20.55 22 20 22H4C3.45 22 3 21.55 3 21V11L5 9M19 9H5" stroke="#FF9800" stroke-width="2" />
+                    </svg>
+                </span>
+                <h3>Строительство дома</h3>
+                <p>Лично встретимся с подрядной организацией и уточним все детали вашего будущего дома.</p>
+                <button class="btn" data-action="apply">Записаться на приём</button>
+            </div>
+            <div class="card" data-action="warranty">
+                <span class="icon icon-roof">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L1 7h22L12 2zm0 14c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z" stroke="#4CAF50" stroke-width="2" />
+                    </svg>
+                </span>
+                <h3>Гарантия на крышу</h3>
+                <p>Мы предоставляем расширенную гарантию на кровельные работы сроком на 5 лет.</p>
+                <button class="btn" data-action="warranty-details">Подробнее о гарантии</button>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+    <!-- Мини-макет для «Узнать больше» -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <h2>Юридическая проверка земельного участка</h2>
+            <div>
+                <h3>1. Юридическая чистота</h3>
+                <ul>
+                    <li>Выписка из ЕГРН — проверьте собственника, категорию земли, ВРИ, границы, обременения (аресты, ипотеки, сервитуты).</li>
+                    <li>Статус продавца — согласие супруга (если в браке), действительность паспорта/доверенности, отсутствие долгов.</li>
+                    <li>Публичная кадастровая карта — сверьте данные с ЕГРН (площадь, ВРИ, категория).</li>
+                    <li>Осмотр на местности — соответствие границ, состояние земли, подъездные пути, наличие незарегистрированных построек.</li>
+                </ul>
+            </div>
+            <div>
+                <h3>2. Градостроительные регламенты</h3>
+                <ul>
+                    <li>Правила землепользования и застройки (ПЗЗ) — виды разрешённого использования, предельные размеры участка, параметры застройки (высота, этажность, отступы).</li>
+                    <li>Генеральный план — перспективное развитие территории, зоны ограничений.</li>
+                    <li>ЗОУИТ (зоны с особыми условиями) — санитарные, природоохранные, охранные зоны и их ограничения.</li>
+                </ul>
+            </div>
+            <div>
+                <h3>3. Дополнительные шаги</h3>
+                <ul>
+                    <li>Проверьте историю сделок (при сомнениях).</li>
+                    <li>Для строительства — подайте уведомление о планируемых работах.</li>
+                    <li>Привлеките юриста для комплексной проверки.</li>
+                </ul>
+            </div>
+            <p>Важно: игнорирование проверок грозит отказом в регистрации, штрафами или сносом построек.</p>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section class="excursion-section">
+        <h3 class="excursion-mini-title">Записывайтесь на экскурсию по нашим готовым объектам</h3>
+        <div class="excursion-image-wrapper">
+            <img src="images/show.webp" alt="Дом для экскурсии" class="excursion-image">
+            <div class="dark-overlay"></div>
+            <div class="excursion-overlay">
+                <p class="excursion-description">Посмотрите, как будет выглядеть ваш дом</p>
+                <button class="excursion-btn" onclick="openExcursionModal()">Записаться на экскурсию</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="header-block">
+            <div class="company-title">
+                <h1>О компании</h1>
+            </div>
+        </div>
+        <div class="content-block">
+            <div class="description-block">
+                <b>
+                    <p>Мы агентство индивидуальной жилой недвижимости, в структуру которого входят ипотечный, земельный и юридический отдел, а также аккредитованные подрядные организации. Имеем 5 офисов — в Ростове-на-Дону, Воронеже, Таганроге, Азове и Новочеркасске.</p>
+                    <p>Помимо подбора проекта дома мы также помогаем получить ипотеку и найти земельный участок под строительство дома. И делаем это бесплатно, до заключения договора.</p>
+                    <p>Мы предлагаем на выбор проекты домов от 69,9 до 137м². От заключения договора до сдачи готового объекта пройдет не более 8 месяцев. Дома сдаются с отделкой WHITE BOX, а это значит, что проделана вся черновая работа — штукатурка стен, разводка электрики, финальная стяжка пола, теплый пол и многое другое.</p>
+                </b>
+            </div>
+            <picture>
+                <source srcset="images/told.webp" type="image/webp">
+                <img class="left-image" src="images/told.webp" alt="Пример построенного дома">
+            </picture>
+        </div>
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number">400</span>
+                <span class="stat-label">реализованных проектов</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">58 365 м²</span>
+                <span class="stat-label">сданной площади в эксплуатацию</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">40</span>
+                <span class="stat-label">профессиональных подрядчиков</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">350</span>
+                <span class="stat-label">агентов недвижимости доверяют нам</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="promotions-section" id="promotions-section">
+        <h2>Наши акции</h2>
+        <div class="promotions-container">
+            <div class="promo-card">
+                <div class="promo-text">
+                    <h3>Покупай дом сейчас – плати потом</h3>
+                    <p>Иногда бывает трудно платить съемную квартиру и ипотечные взносы. Подробнее у менеджеров.</p>
+                </div>
+            </div>
+            <div class="promo-card">
+                <div class="promo-text">
+                    <h3>Обменяй свою квартиру на дом</h3>
+                    <p>Программа «Trade-in». Вы можете обменять вашу квартиру на дом быстро и выгодно.</p>
+                </div>
+            </div>
+            <div class="promo-card">
+                <div class="promo-text">
+                    <h3>Семейная ипотека 6%</h3>
+                    <p>Мы поможем оформить льготную ипотеку даже без первоначального взноса.</p>
+                </div>
+            </div>
+            <div class="promo-card">
+                <div class="promo-text">
+                    <h3>Бонус за клиента!</h3>
+                    <p>Приведи клиента и получи бонус до 35.000 рублей.</p>
+                </div>
+            </div>
+        </div>
+        <div class="promo-image-container">
+            <img src="images/Now.webp" alt="Рекламное изображение" class="promo-image" />
+        </div>
+    </section>
+
+    <section class="partners">
+        <div class="container">
+            <div class="partners-header">
+                <h2>Наши партнёры</h2>
+
+            </div>
+
+            <div class="partners-grid">
+                <a href="https://www.pinta-sport.ru/" target="_blank" class="partner-logo">
+                    <img src="images/pinta.svg" alt="ПИНТА — ВМЕСТЕ С 2008" />
+                </a>
+
+                <a href="https://fc-rostov.ru/" target="_blank" class="partner-logo">
+                    <img src="images/ros.svg" alt="ФК Ростов 1930" />
+                </a>
+
+                <a href="https://hoff.ru/" target="_blank" class="partner-logo">
+                    <img src="images/hoff.svg" alt="Hoff" />
+                </a>
+                <a href="https://loga.ru/" target="_blank" class="partner-logo">
+                    <img src="images/park.svg" alt="ПАРК ЛОГА" />
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+    <h2>Наш адрес</h2>
+    <p>Ростов-на-Дону, ул. Пушкинская 46</p>
+    <div class="map-container">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2699.999!2d39.722222!3d47.222222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40e3b8b8b8b8b8b8%3A0x1234567890abcdef!2s%D0%A0%D0%BE%D1%81%D1%82%D0%BE%D0%B2-%D0%BD%D0%B0-%D0%94%D0%BE%D0%BD%D1%83%2C%20%D1%83%D0%BB.%20%D0%9F%D1%83%D1%88%D0%BA%D0%B8%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%2046!5e0!3m2!1sen!2sru!4v1234567890!5m2!1sen!2sru" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <a href="https://www.google.com/maps?q=Ростов-на-Дону,+ул.+Пушкинская+46" target="_blank" class="map-link">Найти на карте</a>
+    </div>
+</section>
+
+    <div class="reviews-page">
+        <h1>Отзывы клиентов</h1>
+        <div class="ratings-block">
+            <div class="rating-item">
+                <span class="star-rating">★★★★★</span>
+                <span>5.0 (на основе 5 отзывов)</span>
+            </div>
+        </div>
+        <div class="reviews-slider">
+            <button class="slider-btn prev" onclick="prevReview()">←</button>
+            <div class="reviews-container">
+                <!-- Существующий отзыв 1 (активный) -->
+                <div class="review-item active">
+                    <div class="review-header">
+                        <div class="avatar">И</div>
+                        <div>
+                            <span class="name">Иван</span>
+                            <span class="level">Уровень 5</span>
+                        </div>
+                        <span class="date">2023-10-01</span>
+                    </div>
+                    <div class="review-content">Отличная компания! Помогли с ипотекой и строительством.</div>
+                    <div class="review-actions">
+                        <button class="like-btn" onclick="alert('Лайк поставлен!')">👍</button>
+                    </div>
+                </div>
+
+                <!-- Существующий отзыв 2 -->
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="avatar">М</div>
+                        <div>
+                            <span class="name">Мария</span>
+                            <span class="level">Уровень 3</span>
+                        </div>
+                        <span class="date">2023-09-15</span>
+                    </div>
+                    <div class="review-content">Быстро и качественно. Рекомендую!</div>
+                    <div class="review-actions">
+                        <button class="like-btn" onclick="alert('Лайк поставлен!')">👍</button>
+                    </div>
+                </div>
+
+                <!-- Новый отзыв 3 -->
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="avatar">А</div>
+                        <div>
+                            <span class="name">Александр</span>
+                            <span class="level">Уровень 4</span>
+                        </div>
+                        <span class="date">2023-08-22</span>
+                    </div>
+                    <div class="review-content">Профессионалы своего дела! Всё объяснили, помогли с документами.</div>
+                    <div class="review-actions">
+                        <button class="like-btn" onclick="alert('Лайк поставлен!')">👍</button>
+                    </div>
+                </div>
+
+                <!-- Новый отзыв 4 -->
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="avatar">Е</div>
+                        <div>
+                            <span class="name">Елена</span>
+                            <span class="level">Уровень 2</span>
+                        </div>
+                        <span class="date">2023-07-10</span>
+                    </div>
+                    <div class="review-content">Очень довольна сотрудничеством! Сроки соблюдены, качество на высоте.</div>
+                    <div class="review-actions">
+                        <button class="like-btn" onclick="alert('Лайк поставлен!')">👍</button>
+                    </div>
+                </div>
+
+                <!-- Новый отзыв 5 -->
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="avatar">Д</div>
+                        <div>
+                            <span class="name">Дмитрий</span>
+                            <span class="level">Уровень 6</span>
+                        </div>
+                        <span class="date">2023-06-05</span>
+                    </div>
+                    <div class="review-content">Суперкоманда! Решили сложную задачу за короткий срок. Буду рекомендовать.</div>
+                    <div class="review-actions">
+                        <button class="like-btn" onclick="alert('Лайк поставлен!')">👍</button>
+                    </div>
+                </div>
+            </div>
+            <button class="slider-btn next" onclick="nextReview()">→</button>
+        </div>
+        <!-- Кнопка "Написать отзыв" теперь отдельно от футера, размещена здесь -->
+        <button class="write-btn" onclick="openReviewModal()">Написать отзыв</button>
+    </div>
+
+    <!-- Футер теперь на всю страницу -->
+    <footer class="footer">
+        <div class="contacts">
+            Адрес: Ростов-на-дону, ул. Пушкинская 46 | Номер: 8 800 550 81 09 | Почта: info@dommarket-russia.ru |
+            <button id="submitBtn" onclick="openFooterModal()">Оставить заявку</button>
+        </div>
+    </footer>
+
+    <!-- Модальные окна -->
+    <div id="excursionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeExcursionModal()">&times;</span>
+            <h4>Оставьте ваш номер для связи</h4>
+            <p>Мы перезвоним вам в течение 15 минут, чтобы согласовать время экскурсии.</p>
+            <input type="tel" id="excursionPhone" placeholder="+7 (___) ___-__-__" required>
+            <button class="submit-btn" onclick="submitExcursionRequest()">Отправить</button>
+        </div>
+    </div>
+
+    <div id="footerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeFooterModal()">&times;</span>
+            <h3>Оставить заявку</h3>
+            <form id="contactForm">
+                <label for="name">Ваше имя:</label>
+                <input type="text" id="name" name="name" placeholder="Введите имя" required>
+                <label for="phone">Номер телефона:</label>
+                <input type="tel" id="phone" name="phone" placeholder="89286012133" required>
+                <button type="submit" class="submit-btn">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" style="max-width: 90%; max-height: 80vh;">
+    </div>
+
+    <!-- Модальное окно для отзыва -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeReviewModal()">&times;</span>
+            <h4>Написать отзыв</h4>
+            <form id="reviewForm">
+                <label for="reviewName">Ваше имя:</label>
+                <input type="text" id="reviewName" name="name" required>
+                <label for="reviewText">Ваш отзыв:</label>
+                <textarea id="reviewText" name="review" required></textarea>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальное окно для входа -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h4>Войти</h4>
+            <form id="loginForm">
+                <label for="loginName">Имя:</label>
+                <input type="text" id="loginName" name="name" required>
+                <label for="loginPhone">Номер телефона:</label>
+                <input type="tel" id="loginPhone" name="phone" required>
+                <label for="loginPassword">Пароль:</label>
+                <input type="password" id="loginPassword" name="password" required>
+                <button type="submit">Войти</button>
+            </form>
+        </div>
+        <style>
+            /* Стили для формы в модальном окне */
+            #loginModal .modal-content form {
+                display: flex;
+                flex-direction: column; /* Каждый элемент на своей строке */
+                gap: 10px; /* Отступ между элементами */
+            }
+
+            #loginModal .modal-content label {
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+            #loginModal .modal-content input {
+                width: 100%; /* Ширина на всю доступную область */
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box; /* Учитывает padding в ширине */
+            }
+
+            #loginModal .modal-content button {
+                padding: 10px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+
+                #loginModal .modal-content button:hover {
+                    background-color: #0056b3;
+                }
+            /* Адаптивность для мобильных (меньше 600px) */
+            @media (max-width: 600px) {
+                #loginModal .modal-content form {
+                    gap: 8px; /* Меньше отступов */
+                }
+
+                #loginModal .modal-content label {
+                    font-size: 14px; /* Меньше шрифт */
+                }
+
+                #loginModal .modal-content input {
+                    padding: 6px; /* Меньше padding */
+                }
+
+                #loginModal .modal-content button {
+                    padding: 8px;
+                    font-size: 14px;
+                }
+            }
+        </style>
+    </div>
+
+    <!-- Модальное окно для регистрации -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRegisterModal()">&times;</span>
+            <h4>Регистрация</h4>
+            <form id="registerForm">
+                <label for="regName">Имя:</label>
+                <input type="text" id="regName" name="name" required>
+                <label for="regPhone">Телефон:</label>
+                <input type="tel" id="regPhone" name="phone" required>
+                <label for="regPassword">Пароль:</label>
+                <input type="password" id="regPassword" name="password" required>
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+        </div>
+        <style>
+            /* Стили для формы в модальном окне */
+            #registerModal .modal-content form {
+                display: flex;
+                flex-direction: column; /* Каждый элемент на своей строке */
+                gap: 10px; /* Отступ между элементами */
+            }
+
+            #registerModal .modal-content label {
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+            #registerModal .modal-content input {
+                width: 100%; /* Ширина на всю доступную область */
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box; /* Учитывает padding в ширине */
+            }
+
+            #registerModal .modal-content button {
+                padding: 10px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+
+                #registerModal .modal-content button:hover {
+                    background-color: #0056b3;
+                }
+            /* Адаптивность для мобильных (меньше 600px) */
+            @media (max-width: 600px) {
+                #registerModal .modal-content form {
+                    gap: 8px; /* Меньше отступов */
+                }
+
+                #registerModal .modal-content label {
+                    font-size: 14px; /* Меньше шрифт */
+                }
+
+                #registerModal .modal-content input {
+                    padding: 6px; /* Меньше padding */
+                }
+
+                #registerModal .modal-content button {
+                    padding: 8px;
+                    font-size: 14px;
+                }
+            }
+        </style>
+    </div>
+
+    <!-- Модальное окно подтверждения входа -->
+    <div id="confirmLoginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeConfirmLoginModal()">&times;</span>
+            <p>У вас есть аккаунт. Войти?</p>
+            <button id="confirmYes">Да</button>
+            <button id="confirmNo">Нет</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно для записи на приём -->
+    <div id="applyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeApplyModal()">&times;</span>
+            <h4>Записаться на приём</h4>
+            <p>Оставьте ваши данные, и мы свяжемся для согласования времени.</p>
+            <form id="applyForm">
+                <label for="applyName">Ваше имя:</label>
+                <input type="text" id="applyName" name="name" required>
+                <label for="applyPhone">Телефон:</label>
+                <input type="tel" id="applyPhone" name="phone" required>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script> <!-- Подключение JS -->
+</body>
+</html>
